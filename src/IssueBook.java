@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -256,8 +257,6 @@ PreparedStatement pst;
             }
         });
 
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,6 +313,28 @@ PreparedStatement pst;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        String sql = "insert into issuebook(book_id,book_name,edition,publisher,price,pages,student_id,student_name,course,campus,year,semester,date_of_issue) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try 
+        {
+           pst = conn.prepareStatement(sql);
+           pst.setString(1, jTextField1.getText());
+           pst.setString(2, jTextField2.getText());
+           pst.setString(3, jTextField3.getText());
+           pst.setString(4, jTextField4.getText());
+           pst.setString(5, jTextField5.getText());
+           pst.setString(6, jTextField6.getText());
+           pst.setString(7, jTextField7.getText());
+           pst.setString(8, jTextField8.getText());
+           pst.setString(9, jTextField9.getText());
+           pst.setString(10, jTextField10.getText());
+           pst.setString(11, jTextField11.getText());
+           pst.setString(12, jTextField12.getText());
+           pst.setString(13, ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText());
+           pst.execute();
+           JOptionPane.showMessageDialog(null, "Book Issued Successfully!");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
